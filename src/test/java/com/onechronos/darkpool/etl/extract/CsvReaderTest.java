@@ -69,7 +69,7 @@ class CsvReaderTest {
         Path csv = writeCsv("""
                 id,name
                 1,foo
-
+                
                 2,bar
                 """);
 
@@ -105,7 +105,7 @@ class CsvReaderTest {
                 stream.toList();
             }
         }).isInstanceOf(CsvReaderException.class)
-          .hasMessageContaining("Empty CSV file");
+                .hasMessageContaining("Empty CSV file");
     }
 
     @Test

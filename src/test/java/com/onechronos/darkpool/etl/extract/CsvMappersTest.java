@@ -17,14 +17,14 @@ class CsvMappersTest {
     @Test
     void mapValidTradeRowSuccessfully() {
         CsvRow row = row(2L, Map.of(
-                "trade_id",    "TRD001",
-                "symbol",      "aapl",
-                "buyer_id",    "BUY1",
-                "seller_id",   "SEL1",
-                "timestamp",   "2024-01-15T10:00:00Z",
-                "price",       "150.00",
-                "quantity",    "100",
-                "trade_status","EXECUTED"
+                "trade_id", "TRD001",
+                "symbol", "aapl",
+                "buyer_id", "BUY1",
+                "seller_id", "SEL1",
+                "timestamp", "2024-01-15T10:00:00Z",
+                "price", "150.00",
+                "quantity", "100",
+                "trade_status", "EXECUTED"
         ));
 
         CsvReaderRowResult<TradeRecord> result = CsvMappers.toTradeRecord(row, Path.of("test.csv"));
@@ -40,17 +40,17 @@ class CsvMappersTest {
     @Test
     void mapTradeRecordWithMissingRequiredField() {
         CsvRow row = row(3L, Map.of(
-                "trade_id",    "TRD002",
-                "symbol",      "AAPL",
-                "buyer_id",    "BUY1",
-                "seller_id",   "SEL1",
-                "timestamp",   "2024-01-15T10:00:00Z",
-                "quantity",    "100",
-                "trade_status","EXECUTED"
+                "trade_id", "TRD002",
+                "symbol", "AAPL",
+                "buyer_id", "BUY1",
+                "seller_id", "SEL1",
+                "timestamp", "2024-01-15T10:00:00Z",
+                "quantity", "100",
+                "trade_status", "EXECUTED"
                 // price is missing
         ));
 
-        CsvReaderRowResult<TradeRecord> result = CsvMappers.toTradeRecord(row,  Path.of("test.csv"));
+        CsvReaderRowResult<TradeRecord> result = CsvMappers.toTradeRecord(row, Path.of("test.csv"));
 
         assertThat(result.isSuccess()).isFalse();
         assertThat(result.exception()).isPresent();
@@ -63,15 +63,15 @@ class CsvMappersTest {
     void mapValidFillRowSuccessfully() {
         CsvRow row = row(2L, Map.of(
                 "external_ref_id", "EXT001",
-                "our_trade_id",    "TRD001",
-                "symbol",          "msft",
+                "our_trade_id", "TRD001",
+                "symbol", "msft",
                 "counterparty_id", "CP1",
-                "timestamp",       "2024-01-15T11:00:00Z",
-                "price",           "299.99",
-                "quantity",        "50"
+                "timestamp", "2024-01-15T11:00:00Z",
+                "price", "299.99",
+                "quantity", "50"
         ));
 
-        CsvReaderRowResult<FillRecord> result = CsvMappers.toFillRecord(row,  Path.of("test.csv"));
+        CsvReaderRowResult<FillRecord> result = CsvMappers.toFillRecord(row, Path.of("test.csv"));
 
         assertThat(result.isSuccess()).isTrue();
         FillRecord fill = result.parsedRow().get();
@@ -85,11 +85,11 @@ class CsvMappersTest {
     void mapFillRecordWithMissingRequiredField() {
         CsvRow row = row(4L, Map.of(
                 "external_ref_id", "EXT002",
-                "our_trade_id",    "TRD002",
-                "symbol",          "MSFT",
+                "our_trade_id", "TRD002",
+                "symbol", "MSFT",
                 "counterparty_id", "CP1",
-                "timestamp",       "2024-01-15T11:00:00Z",
-                "price",           "299.99"
+                "timestamp", "2024-01-15T11:00:00Z",
+                "price", "299.99"
                 // quantity is missing
         ));
 
@@ -103,10 +103,10 @@ class CsvMappersTest {
     @Test
     void mapSymbolRefRowSuccessfully() {
         CsvRow row = row(2L, Map.of(
-                "symbol",       "googl",
+                "symbol", "googl",
                 "company_name", "Alphabet Inc.",
-                "is_active",    "true",
-                "sector",       "Technology"
+                "is_active", "true",
+                "sector", "Technology"
         ));
 
         CsvReaderRowResult<SymbolRefRecord> result = CsvMappers.toSymbolRefRecord(row, Path.of("test.csv"));
@@ -121,10 +121,10 @@ class CsvMappersTest {
     @Test
     void mapSymbolRefRecordWithMissingRequiredField() {
         CsvRow row = row(5L, Map.of(
-                "symbol",       "XYZ",
+                "symbol", "XYZ",
                 "company_name", "XYZ Corp",
-                "is_active",    "true",
-                "sector",       "UNKNOWN_SECTOR"
+                "is_active", "true",
+                "sector", "UNKNOWN_SECTOR"
         ));
 
         CsvReaderRowResult<SymbolRefRecord> result = CsvMappers.toSymbolRefRecord(row, Path.of("test.csv"));
@@ -138,14 +138,14 @@ class CsvMappersTest {
     @Test
     void parsesEpochTimestamp() {
         CsvRow row = row(2L, Map.of(
-                "trade_id",    "TRD003",
-                "symbol",      "AAPL",
-                "buyer_id",    "BUY1",
-                "seller_id",   "SEL1",
-                "timestamp",   "1705312800",
-                "price",       "150.00",
-                "quantity",    "100",
-                "trade_status","EXECUTED"
+                "trade_id", "TRD003",
+                "symbol", "AAPL",
+                "buyer_id", "BUY1",
+                "seller_id", "SEL1",
+                "timestamp", "1705312800",
+                "price", "150.00",
+                "quantity", "100",
+                "trade_status", "EXECUTED"
         ));
 
         assertThat(CsvMappers.toTradeRecord(row, Path.of("test.csv")).isSuccess()).isTrue();
@@ -154,14 +154,14 @@ class CsvMappersTest {
     @Test
     void parseUsFormatTimestamp() {
         CsvRow row = row(2L, Map.of(
-                "trade_id",    "TRD004",
-                "symbol",      "AAPL",
-                "buyer_id",    "BUY1",
-                "seller_id",   "SEL1",
-                "timestamp",   "1/15/2024 10:5:7",
-                "price",       "150.00",
-                "quantity",    "100",
-                "trade_status","EXECUTED"
+                "trade_id", "TRD004",
+                "symbol", "AAPL",
+                "buyer_id", "BUY1",
+                "seller_id", "SEL1",
+                "timestamp", "1/15/2024 10:5:7",
+                "price", "150.00",
+                "quantity", "100",
+                "trade_status", "EXECUTED"
         ));
 
         assertThat(CsvMappers.toTradeRecord(row, Path.of("test.csv")).isSuccess()).isTrue();

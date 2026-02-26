@@ -27,12 +27,13 @@ public class Pipeline {
      * Runs the full ETL pipeline:
      * - Loads symbol reference and fill data eagerly into memory
      * - Streams trades.csv, routing each row to one of:
-     *      - valid trades, with discrepancy flag set if fill mismatches to cleaned trades output file
-     *      - parse failures, duplicates, invalid/inactive symbols, fill mismatches exception report output file
-     *      - Note: Cancelled trades are filtered silently and not written to either output
+     * - valid trades, with discrepancy flag set if fill mismatches to cleaned trades output file
+     * - parse failures, duplicates, invalid/inactive symbols, fill mismatches exception report output file
+     * - Note: Cancelled trades are filtered silently and not written to either output
+     *
      * @param csvReader streaming CSV reader
-     * @param config application configuration
-     * @param metrics counters incremented throughout the pipeline
+     * @param config    application configuration
+     * @param metrics   counters incremented throughout the pipeline
      */
     public static void runPipeline(
             CsvReader csvReader,
@@ -42,7 +43,7 @@ public class Pipeline {
 
         // Load reference data eagerly
         Map<String, SymbolRefRecord> symbolMap = loadSymbolsMap(csvReader, config, metrics);
-        Map<String, FillRecord>      fillMap   = loadFillsMap(csvReader, config, metrics);
+        Map<String, FillRecord> fillMap = loadFillsMap(csvReader, config, metrics);
         log.info("Loaded {} symbols, {} fills", symbolMap.size(), fillMap.size());
 
         Transformer transformer = Transformer.build(config.validationConfig(), symbolMap, fillMap);
@@ -51,7 +52,7 @@ public class Pipeline {
 
         try (
                 var tradeStream = csvReader.readFile(tradesFile, (CsvRow row) -> CsvMappers.toTradeRecord(row, tradesFile));
-                var writer      = JsonWriter.open(config.writeConfig().cleanedTradesFile(), config.writeConfig().exceptionsReportFile())
+                var writer = JsonWriter.open(config.writeConfig().cleanedTradesFile(), config.writeConfig().exceptionsReportFile())
         ) {
             log.info("Processing trade records....");
             tradeStream

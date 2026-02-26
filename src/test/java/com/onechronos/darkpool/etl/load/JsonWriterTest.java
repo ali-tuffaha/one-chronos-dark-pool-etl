@@ -23,7 +23,7 @@ class JsonWriterTest {
 
     @Test
     void writesCleanedTradeAsSnakeCaseJson() throws Exception {
-        Path cleanedFile    = tempDir.resolve("cleaned_trades.json");
+        Path cleanedFile = tempDir.resolve("cleaned_trades.json");
         Path exceptionsFile = tempDir.resolve("exceptions_report.json");
 
         CleanedTradeRecord trade = new CleanedTradeRecord(
@@ -54,7 +54,7 @@ class JsonWriterTest {
 
     @Test
     void writesExceptionRecordAsSnakeCaseJson() throws Exception {
-        Path cleanedFile    = tempDir.resolve("cleaned_trades.json");
+        Path cleanedFile = tempDir.resolve("cleaned_trades.json");
         Path exceptionsFile = tempDir.resolve("exceptions_report.json");
 
         ExceptionRecord exception = new ExceptionRecord(

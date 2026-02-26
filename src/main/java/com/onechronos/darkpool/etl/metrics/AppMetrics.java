@@ -72,16 +72,45 @@ public class AppMetrics implements AutoCloseable {
                 .register(registry);
     }
 
-    public void stopAppExecutionTime()            { executionTime.stop(appExecutionTime); }
-    public void incrementTradesRead()             { tradesRead.increment(); }
-    public void incrementTradesCancelled()        { tradesCancelled.increment(); }
-    public void incrementTradesCleanedWritten()   { tradesCleanedWritten.increment(); }
-    public void incrementTradesExceptionWritten() { tradesExceptionWritten.increment(); }
-    public void incrementTradesParseFailed()     { tradesParseFailed.increment(); }
-    public void incrementFillsRead()              { fillsRead.increment(); }
-    public void incrementFillsParsesFailed()      { fillsParseFailed.increment(); }
-    public void incrementSymbolsRead()            { symbolsRead.increment(); }
-    public void incrementSymbolsParsesFailed()    { symbolsParseFailed.increment(); }
+    public void stopAppExecutionTime() {
+        executionTime.stop(appExecutionTime);
+    }
+
+    public void incrementTradesRead() {
+        tradesRead.increment();
+    }
+
+    public void incrementTradesCancelled() {
+        tradesCancelled.increment();
+    }
+
+    public void incrementTradesCleanedWritten() {
+        tradesCleanedWritten.increment();
+    }
+
+    public void incrementTradesExceptionWritten() {
+        tradesExceptionWritten.increment();
+    }
+
+    public void incrementTradesParseFailed() {
+        tradesParseFailed.increment();
+    }
+
+    public void incrementFillsRead() {
+        fillsRead.increment();
+    }
+
+    public void incrementFillsParsesFailed() {
+        fillsParseFailed.increment();
+    }
+
+    public void incrementSymbolsRead() {
+        symbolsRead.increment();
+    }
+
+    public void incrementSymbolsParsesFailed() {
+        symbolsParseFailed.increment();
+    }
 
     public void printSummary() {
         log.info("===== Pipeline Metrics =====");

@@ -18,7 +18,7 @@ class TransformerTest {
 
     private static final Path SOURCE_FILE = Path.of("trades.csv");
     private static final Instant TRADE_TIME = Instant.parse("2024-01-15T10:00:00Z");
-    private static final Instant FILL_TIME  = Instant.parse("2024-01-15T11:00:00Z");
+    private static final Instant FILL_TIME = Instant.parse("2024-01-15T11:00:00Z");
 
     private Transformer transformer;
 

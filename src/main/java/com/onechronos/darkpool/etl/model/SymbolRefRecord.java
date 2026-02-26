@@ -10,4 +10,5 @@ public record SymbolRefRecord(
         String companyName,
         Sector sector,
         Boolean isActive
-) {}
+) {
+}

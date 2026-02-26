@@ -19,21 +19,24 @@ import java.util.stream.Stream;
 public class CsvReader {
     private static final Logger log = LoggerFactory.getLogger(CsvReader.class);
 
-    private CsvReader() { }
+    private CsvReader() {
+    }
 
     public static CsvReader build() {
         return new CsvReader();
     }
 
-    private record LineWithNumber(long lineNumber, String line) {}
+    private record LineWithNumber(long lineNumber, String line) {
+    }
 
 
     /**
      * Opens the given CSV file and returns a lazy stream of parsed records.
-     * @param path of csv file
-     * @param mapper  functions that maps a row map into a CsvReaderRowResult
-     * @return  lazy stream of ParseResult
-     * @param <T> result type
+     *
+     * @param path   of csv file
+     * @param mapper functions that maps a row map into a CsvReaderRowResult
+     * @param <T>    result type
+     * @return lazy stream of ParseResult
      * @throws CsvReaderException if error occurs while reading or mapping csv file
      */
     public <T> Stream<CsvReaderRowResult<T>> readFile(

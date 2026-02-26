@@ -7,6 +7,7 @@ import com.typesafe.config.ConfigFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -17,7 +18,8 @@ import java.util.Optional;
 public class AppConfigLoader {
     private static final Logger log = LoggerFactory.getLogger(AppConfigLoader.class);
 
-    private AppConfigLoader() { }
+    private AppConfigLoader() {
+    }
 
     public static AppConfigLoader build() {
         return new AppConfigLoader();
@@ -43,7 +45,8 @@ public class AppConfigLoader {
 
             AppConfig appConfig = new AppConfig(
                     parserReadConfig(config.getConfig("read-config")),
-                    parseWriteConfig(config.getConfig("write-config"))
+                    parseWriteConfig(config.getConfig("write-config")),
+                    parserValidationConfig(config.getConfig("validation-config"))
             );
 
             log.info("Configuration loaded successfully");
@@ -52,8 +55,7 @@ public class AppConfigLoader {
             return appConfig;
         } catch (IllegalArgumentException e) {
             throw new ConfigLoadException("Failed to parse field in %s".formatted(configFilePath), e);
-        }
-        catch (ConfigException e) {
+        } catch (ConfigException e) {
             throw new ConfigLoadException("Failed to parse config file %s".formatted(configFilePath), e);
         }
     }
@@ -72,6 +74,16 @@ public class AppConfigLoader {
                 getPath(conf, "cleaned-trades-file"),
                 getPath(conf, "exceptions-report-file")
         );
+    }
+
+    private ValidationConfig parserValidationConfig(Config conf) {
+        try {
+            return new ValidationConfig(
+                    new BigDecimal(conf.getString("price-discrepancy-threshold"))
+            );
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid price-discrepancy-threshold: " + e.getMessage());
+        }
     }
 
     private Path getPath(Config conf, String key) {

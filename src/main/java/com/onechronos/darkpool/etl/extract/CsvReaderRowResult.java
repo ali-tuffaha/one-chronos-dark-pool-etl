@@ -8,6 +8,7 @@ import java.util.Optional;
 /**
  * The result of reading and mapping a single CSV row.
  * One only parsedRow or exception can be present at once.
+ *
  * @param parsedRow successfully parsed row (if present then exception is not present)
  * @param exception exception record if parsing failed  (if present then value is not present)
  * @param <T>

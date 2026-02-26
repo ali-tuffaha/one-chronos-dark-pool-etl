@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 /**
  * Config record encapsulating output file paths
+ *
  * @param cleanedTradesFile
  * @param exceptionsReportFile
  */

@@ -60,7 +60,7 @@ class CsvReaderTest {
             rows = stream.map(r -> r.parsedRow().get()).toList();
         }
 
-        assertThat(rows.get(0).rowNumber()).isEqualTo(2L); // header is line 1
+        assertThat(rows.get(0).rowNumber()).isEqualTo(2L);
         assertThat(rows.get(1).rowNumber()).isEqualTo(3L);
     }
 

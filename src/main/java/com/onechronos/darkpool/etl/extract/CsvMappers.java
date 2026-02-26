@@ -42,8 +42,9 @@ public class CsvMappers {
 
     /**
      * Function that maps a csv row map to a CsvReaderRowResult
+     *
      * @param row input row with map
-*    * @param sourceFile of source file for reporting purposes
+     *            * @param sourceFile of source file for reporting purposes
      * @return CsvReaderRowResult which contains either parsed Trade record or an ExceptionRecord
      */
     public static CsvReaderRowResult<TradeRecord> toTradeRecord(CsvRow row, Path sourceFile) {
@@ -77,7 +78,8 @@ public class CsvMappers {
 
     /**
      * Function that maps a csv row map to a CsvReaderRowResult
-     * @param row input row with map
+     *
+     * @param row        input row with map
      * @param sourceFile of source file for reporting purposes
      * @return CsvReaderRowResult which contains either parsed Fill record or an ExceptionRecord
      */
@@ -109,7 +111,8 @@ public class CsvMappers {
 
     /**
      * Function that maps a csv row map to a CsvReaderRowResult
-     * @param row input row with map
+     *
+     * @param row        input row with map
      * @param sourceFile of source file for reporting purposes
      * @return CsvReaderRowResult which contains either parsed SymbolRef record or an ExceptionRecord
      */

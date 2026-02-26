@@ -32,7 +32,7 @@ class CsvMappersTest {
         assertThat(result.isSuccess()).isTrue();
         TradeRecord trade = result.parsedRow().get();
         assertThat(trade.tradeId()).isEqualTo("TRD001");
-        assertThat(trade.symbol()).isEqualTo("AAPL");           // normalised to uppercase
+        assertThat(trade.symbol()).isEqualTo("AAPL");
         assertThat(trade.price()).isEqualByComparingTo("150.00");
         assertThat(trade.tradeStatus()).isEqualTo(TradeStatus.EXECUTED);
     }
@@ -77,7 +77,7 @@ class CsvMappersTest {
         FillRecord fill = result.parsedRow().get();
         assertThat(fill.externalRefId()).isEqualTo("EXT001");
         assertThat(fill.ourTradeId()).isEqualTo("TRD001");
-        assertThat(fill.symbol()).isEqualTo("MSFT");            // normalised to uppercase
+        assertThat(fill.symbol()).isEqualTo("MSFT");
         assertThat(fill.price()).isEqualByComparingTo("299.99");
     }
 
@@ -113,7 +113,7 @@ class CsvMappersTest {
 
         assertThat(result.isSuccess()).isTrue();
         SymbolRefRecord symbol = result.parsedRow().get();
-        assertThat(symbol.symbol()).isEqualTo("GOOGL");         // normalised to uppercase
+        assertThat(symbol.symbol()).isEqualTo("GOOGL");
         assertThat(symbol.isActive()).isTrue();
         assertThat(symbol.sector()).isEqualTo(Sector.TECHNOLOGY);
     }

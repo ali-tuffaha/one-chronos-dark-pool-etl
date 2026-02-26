@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 /**
  * Config record encapsulating input file paths
+ *
  * @param symbolsRefFile
  * @param fillsFile
  * @param tradesFile

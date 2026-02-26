@@ -14,4 +14,5 @@ public record FillRecord(
         Integer quantity,
         BigDecimal price,
         String counterpartyId
-) {}
+) {
+}

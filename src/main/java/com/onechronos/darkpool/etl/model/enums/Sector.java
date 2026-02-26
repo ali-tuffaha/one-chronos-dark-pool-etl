@@ -18,6 +18,7 @@ public enum Sector {
 
     /**
      * Parse Sector display name to Enum type.
+     *
      * @param displayName to be parsed
      * @return Sector enum
      */

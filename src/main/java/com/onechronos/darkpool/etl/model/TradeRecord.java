@@ -19,4 +19,5 @@ public record TradeRecord(
         String sellerId,
         TradeStatus tradeStatus,
         Map<String, String> rawData
-) {}
+) {
+}

@@ -1,11 +1,15 @@
 <configuration>
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %cyan([%logger{36}]) - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%logger{36}] - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <root level="INFO">
+    <logger name="com.onechronos.darkpool.etl" level="INFO"/>
+
+    <root level="WARN">
         <appender-ref ref="CONSOLE"/>
     </root>
+
 </configuration>

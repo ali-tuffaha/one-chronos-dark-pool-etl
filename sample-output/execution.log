@@ -1,0 +1,25 @@
+2026-02-26 14:38:27.126 INFO  [c.o.darkpool.etl.cli.CliParser] - Parsing command line args...
+2026-02-26 14:38:27.130 INFO  [c.o.darkpool.etl.cli.CliParser] - Command line args parsed CliArgs[configFilePath=Optional.empty]
+2026-02-26 14:38:27.137 INFO  [c.o.d.etl.config.AppConfigLoader] - Loading configuration from Optional.empty
+2026-02-26 14:38:27.137 INFO  [c.o.d.etl.config.AppConfigLoader] - No config file provided. Loading default config file: application.conf
+2026-02-26 14:38:27.163 INFO  [c.o.d.etl.config.AppConfigLoader] - Configuration loaded successfully
+2026-02-26 14:38:27.164 INFO  [c.o.darkpool.etl.extract.CsvReader] - Opening CSV file: src/main/resources/data/symbols_reference.csv
+2026-02-26 14:38:27.174 INFO  [c.o.darkpool.etl.extract.CsvReader] - Opening CSV file: src/main/resources/data/counterparty_fills.csv
+2026-02-26 14:38:27.279 INFO  [c.onechronos.darkpool.etl.Pipeline] - Loaded 10 symbols, 6696 fills
+2026-02-26 14:38:27.280 INFO  [c.o.darkpool.etl.extract.CsvReader] - Opening CSV file: src/main/resources/data/trades.csv
+2026-02-26 14:38:27.364 INFO  [c.o.darkpool.etl.load.JsonWriter] - Opened output files: sample-output/cleaned_trades.json, sample-output/exceptions_report.json
+2026-02-26 14:38:27.364 INFO  [c.onechronos.darkpool.etl.Pipeline] - Processing trade records....
+2026-02-26 14:38:27.576 INFO  [c.onechronos.darkpool.etl.Pipeline] - Trade records processing complete.
+2026-02-26 14:38:27.577 INFO  [c.o.darkpool.etl.metrics.AppMetrics] - ===== Pipeline Metrics =====
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Execution Time (MS)             : 453
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Trades Read             : 10981
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Trades Cancelled        : 2118
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Trades Cleaned Written  : 2568
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Trades Exceptions Written : 5914
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Trades Parse Failed    : 381
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Fills Read              : 6934
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Fills Parse Failed     : 238
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Symbols Read            : 10
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] -   Symbols Parses Failed   : 0
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] - ============================
+2026-02-26 14:38:27.578 INFO  [c.o.darkpool.etl.metrics.AppMetrics] - Closing metrics...

@@ -42,6 +42,13 @@
             <artifactId>micrometer-core</artifactId>
             <version>1.16.3</version>
         </dependency>
+
+        <!-- Config File Loading -->
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>1.4.3</version>
+        </dependency>
     </dependencies>
 
 </project>

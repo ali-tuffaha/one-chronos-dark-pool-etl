@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Application Entry point.
+ * - Start Metrics collection
  * - Parse Command Line arguments
  * - Load Config File
  */

@@ -21,8 +21,10 @@ public class Main {
 
     public static void main(String[] args) {
         try (AppMetrics appMetrics = AppMetrics.build()) {
+            // Parse command line arguments
             CliArgs cliArgs = CliParser.build().parse(args);
 
+            // Load config file
             AppConfig config = AppConfigLoader.build().load(cliArgs.configFilePath());
 
             log.info("CliArgs: {}", cliArgs);

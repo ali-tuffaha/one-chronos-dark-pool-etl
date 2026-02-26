@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Application metrics using Micrometer.
+ * I decided to use Micrometer because it supports a wide range of monitoring backends out of the box: Datadog, Prometheus, Grafana, InfluxDB, CloudWatch
+ */
 public class AppMetrics implements AutoCloseable {
     private static final Logger log = LoggerFactory.getLogger(AppMetrics.class);
 

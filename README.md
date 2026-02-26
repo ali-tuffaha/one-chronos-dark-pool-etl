@@ -1,4 +1,5 @@
 # OneChronos Dark Pool ETL
+The pipeline uses a streaming architecture where trades are read, validated, and written to output files incrementally without loading everything into memory.
 
 ## Requirements
 

@@ -3,6 +3,7 @@
 - Header is always at the first row.
 - We should skip empty lines when reading csv file.
 - Symbols and fills files are small enough to fit in memory.
+- Trades are streamed rather than loaded into memory to support large file sizes.
 - Parse failures in symbols and fills files are logged and skipped. Not written to exceptions report.
 
 ### Parsing:

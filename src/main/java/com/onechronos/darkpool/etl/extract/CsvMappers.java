@@ -58,7 +58,7 @@ public class CsvMappers {
 
         List<String> parseErrors = errors(tradeId, symbol, buyerId, sellerId, timestamp, price, quantity, tradeStatus);
         if (!parseErrors.isEmpty()) {
-            String recordId = tradeId.isError() ? "UNKNOWN" : tradeId.value(); //TODO: assumption if trade id is missing then replace it with UNKNOWN
+            String recordId = tradeId.isError() ? "UNKNOWN" : tradeId.value();
             return CsvReaderRowResult.failure(parseError(recordId, sourceFile.toString(), parseErrors, row));
         }
 

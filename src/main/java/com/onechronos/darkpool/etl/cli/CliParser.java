@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 
 /**
  * Class for Parsing command line arguments into CliArgs object.
@@ -30,10 +31,9 @@ public class CliParser {
 
         opts.addOption(Option.builder(CONFIG_FILE_PATH_SHORT_OPT)
                 .longOpt("config-file-path")
-                .desc("Path to the configuration file (required)")
+                .desc("Path to the configuration file (Optional)")
                 .hasArg()
                 .argName("FILE")
-                .required()
                 .get());
 
         return opts;
@@ -45,7 +45,11 @@ public class CliParser {
 
             CommandLine cmd = new DefaultParser().parse(options, args);
 
-            CliArgs cliArgs = new CliArgs(Path.of(cmd.getOptionValue(CONFIG_FILE_PATH_SHORT_OPT)));
+            String configValue = cmd.getOptionValue(CONFIG_FILE_PATH_SHORT_OPT);
+
+            CliArgs cliArgs = new CliArgs(
+                    configValue != null ? Optional.of(Path.of(configValue)) : Optional.empty()
+            );
 
             log.info("Command line args parsed {}", cliArgs);
 

@@ -2,7 +2,10 @@ package com.onechronos.darkpool.etl;
 
 import com.onechronos.darkpool.etl.cli.CliArgs;
 import com.onechronos.darkpool.etl.cli.CliParser;
+import com.onechronos.darkpool.etl.config.AppConfig;
+import com.onechronos.darkpool.etl.config.AppConfigLoader;
 import com.onechronos.darkpool.etl.exception.CliParseException;
+import com.onechronos.darkpool.etl.exception.ConfigLoadException;
 import com.onechronos.darkpool.etl.metrics.AppMetrics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,12 +23,16 @@ public class Main {
         try (AppMetrics appMetrics = AppMetrics.build()) {
             CliArgs cliArgs = CliParser.build().parse(args);
 
+            AppConfig config = AppConfigLoader.build().load(cliArgs.configFilePath());
+
             log.info("CliArgs: {}", cliArgs);
 
             appMetrics.stopAppExecutionTime();
             appMetrics.printSummary();
         } catch (CliParseException e) {
             log.error("Exception thrown while parsing command line arguments", e);
+        } catch (ConfigLoadException e) {
+            log.error("Exception thrown while loading configs", e);
         }
     }
 }
